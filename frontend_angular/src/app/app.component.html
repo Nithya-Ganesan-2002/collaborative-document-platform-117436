@@ -332,11 +332,18 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<nav class="top-nav">
-  <a routerLink="/profile" *ngIf="auth.isAuthenticated()">Profile</a>
-  <a (click)="auth.logout()" *ngIf="auth.isAuthenticated()">Logout</a>
-  <a routerLink="/login" *ngIf="!auth.isAuthenticated()">Login</a>
-  <a routerLink="/register" *ngIf="!auth.isAuthenticated()">Register</a>
-</nav>
-
-<router-outlet />
+<div class="app-layout">
+  <aside class="side-nav">
+    <div class="brand">CollabDocs</div>
+    <nav>
+      <a routerLink="/documents" routerLinkActive="active-link" aria-label="Your Documents">Documents</a>
+      <a routerLink="/profile" routerLinkActive="active-link" *ngIf="auth.isAuthenticated()">Profile</a>
+      <a (click)="auth.logout()" *ngIf="auth.isAuthenticated()">Logout</a>
+      <a routerLink="/login" routerLinkActive="active-link" *ngIf="!auth.isAuthenticated()">Login</a>
+      <a routerLink="/register" routerLinkActive="active-link" *ngIf="!auth.isAuthenticated()">Register</a>
+    </nav>
+  </aside>
+  <main class="main-content">
+    <router-outlet />
+  </main>
+</div>

@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 export interface UserProfile {
   email: string;
@@ -32,15 +33,7 @@ export class AuthService {
   private tokenKey = 'auth_token';
   private apiUrl = '/api';
 
-  constructor(private http: HttpClient) {
-    if (isBrowser()) {
-      const token = this.getToken();
-      if (token) {
-        this.setToken(token);
-        this.fetchProfile();
-      }
-    }
-  }
+  constructor() {}
 
   // PUBLIC_INTERFACE
   login(email: string, password: string) {

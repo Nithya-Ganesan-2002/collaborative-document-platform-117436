@@ -1,0 +1,29 @@
+.doc-list-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  padding: 0.5em 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1.1em;
+}
+.doc-owner { font-size: 0.9em; color: #aaa; }
+.add-btn {
+  display: inline-block;
+  margin: 1rem 0 0 0;
+  background: #0057d9;
+  color: #fff;
+  padding: 0.4em 1.2em;
+  border-radius: 3px;
+  text-decoration: none;
+}
+.error { color: #b00; margin-top: 0.7em; }

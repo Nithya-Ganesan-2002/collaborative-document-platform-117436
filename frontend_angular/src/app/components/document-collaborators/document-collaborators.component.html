@@ -1,0 +1,13 @@
+<div class="collab-panel">
+  <h3>Collaborators</h3>
+  <ul>
+    <li *ngFor="let user of document.collaborators">
+      {{ user }}
+      <button *ngIf="editable" (click)="remove.emit(user)">Remove</button>
+    </li>
+  </ul>
+  <div *ngIf="editable" class="invite-row">
+    <input type="text" [(ngModel)]="pendingInvite" placeholder="User email or ID" />
+    <button (click)="onInvite()">Invite</button>
+  </div>
+</div>

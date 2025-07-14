@@ -10,11 +10,5 @@ import { RouterLink } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
-  // @ts-ignore auth is only used in template; suppress linter error
-  constructor(public auth: AuthService) {}
-
-  onLogout() {
-    this.auth.logout();
-  }
-}
+// 'auth' is used only in the template
+export class ProfileComponent {}

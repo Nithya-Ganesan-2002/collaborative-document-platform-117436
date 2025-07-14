@@ -1,0 +1,35 @@
+.collab-panel {
+  background: #f6fafd;
+  padding: 0.6em 1.1em;
+  margin: 0.8em 0;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px #0001;
+}
+ul { 
+  list-style: none;
+  padding: 0 0 0 0.5em;
+}
+li {
+  margin-bottom: 0.4em;
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
+.invite-row {
+  margin-top: 1em;
+  display: flex;
+  gap: 0.5em;
+}
+input[type="text"] {
+  flex: 1;
+  padding: 0.45em;
+  border-radius: 3px;
+  border: 1px solid #bbb;
+}
+button {
+  background: #ffce00;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  padding: 0.35em 0.9em;
+}

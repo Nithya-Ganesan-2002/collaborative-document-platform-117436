@@ -10,7 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css',
   standalone: true,
 })
-export class AppComponent {
-  // @ts-ignore auth is only used in template; suppress linter error
-  constructor(public auth: AuthService) {}
-}
+// 'auth' is only used in template context
+export class AppComponent {}

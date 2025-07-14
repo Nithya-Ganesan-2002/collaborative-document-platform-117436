@@ -1,0 +1,20 @@
+<div class="doc-view-container" *ngIf="!loading && doc">
+  <a [routerLink]="['/documents']" class="back-link">&larr; Back to documents</a>
+  <app-document-editor
+    [document]="doc"
+    [editable]="editMode"
+    (save)="onSave($event)">
+  </app-document-editor>
+
+  <app-document-collaborators
+    [document]="doc"
+    [editable]="editMode"
+    (invite)="onInvite($event)"
+    (remove)="onRemove($event)">
+  </app-document-collaborators>
+
+  <button *ngIf="!editMode" routerLink="edit">Edit</button>
+  <button *ngIf="editMode" (click)="editMode = false">Cancel</button>
+</div>
+<div *ngIf="loading">Loading…</div>
+<div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>

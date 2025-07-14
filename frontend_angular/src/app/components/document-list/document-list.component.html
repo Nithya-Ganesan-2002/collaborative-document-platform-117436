@@ -1,0 +1,13 @@
+<div class="doc-list-container">
+  <h2>My Documents</h2>
+  <div *ngIf="docs.loading()">Loading documents…</div>
+  <div *ngIf="docs.error()" class="error">{{ docs.error() }}</div>
+  <ul *ngIf="docs.documents().length">
+    <li *ngFor="let doc of docs.documents()">
+      <a [routerLink]="['/documents', doc.id]">{{ doc.title }}</a>
+      <span class="doc-owner" *ngIf="doc.owner">(Owner: {{ doc.owner }})</span>
+    </li>
+  </ul>
+  <p *ngIf="!docs.documents().length && !docs.loading()">No documents found. <a routerLink="/documents/new">Create one</a></p>
+  <a class="add-btn" routerLink="/documents/new">＋ New Document</a>
+</div>

@@ -11,14 +11,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+// 'auth' is only used in template
 export class LoginComponent {
   email = '';
   password = '';
-
-  // @ts-ignore auth is only used in template; suppress linter error
-  constructor(public auth: AuthService) {}
-
-  onSubmit() {
-    this.auth.login(this.email, this.password);
-  }
 }

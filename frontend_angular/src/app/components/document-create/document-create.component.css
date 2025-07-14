@@ -1,0 +1,26 @@
+.doc-create-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #0001;
+}
+input, textarea {
+  width: 100%;
+  margin-bottom: 0.7em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1.09em;
+  padding: 0.6em;
+}
+button {
+  background: #0057d9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 0.45em 2em;
+  margin-top: 8px;
+}
+.error { color: #b00; margin-top: 1em; }

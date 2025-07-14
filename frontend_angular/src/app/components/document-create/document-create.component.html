@@ -1,0 +1,13 @@
+<div class="doc-create-container">
+  <h2>New Document</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <input [(ngModel)]="title" name="title" placeholder="Title" required />
+    </div>
+    <div>
+      <textarea [(ngModel)]="content" name="content" rows="10" placeholder="Start writing…"></textarea>
+    </div>
+    <button type="submit" [disabled]="submitting || !title.trim()">Create</button>
+    <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+  </form>
+</div>
