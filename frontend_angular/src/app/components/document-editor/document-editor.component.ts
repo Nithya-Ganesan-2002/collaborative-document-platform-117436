@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { DocumentDetail } from '../../services/document.service';
-import { CollabMsg } from '../../services/collab.service';
+import { CollabMsg, CollabService } from '../../services/collab.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-document-editor',
@@ -20,10 +21,17 @@ export class DocumentEditorComponent implements OnInit, OnDestroy {
   editTitle!: string;
   editContent!: string;
 
+  collab: CollabService;
+  auth: AuthService;
+
   private collabSub?: Subscription;
   private selfChange: boolean = false;
 
-  // No longer inject collab/auth
+  constructor() {
+    // Use Angular inject for standalone component DI
+    this.collab = inject(CollabService);
+    this.auth = inject(AuthService);
+  }
 
   ngOnInit() {
     this.editTitle = this.document?.title || '';

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,13 @@ import { RouterLink } from '@angular/router';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  auth: AuthService;
+
+  constructor() {
+    this.auth = inject(AuthService);
+  }
+
   onLogout() {
-    // should call some logout procedure if available
+    this.auth.logout();
   }
 }

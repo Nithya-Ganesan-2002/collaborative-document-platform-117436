@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,14 @@ import { RouterLink } from '@angular/router';
 export class LoginComponent {
   email = '';
   password = '';
+  auth: AuthService;
+
+  constructor() {
+    this.auth = inject(AuthService);
+  }
 
   onSubmit() {
     if (!this.email.trim() || !this.password) return;
-    // should call some login procedure if available
+    this.auth.login(this.email, this.password);
   }
 }
