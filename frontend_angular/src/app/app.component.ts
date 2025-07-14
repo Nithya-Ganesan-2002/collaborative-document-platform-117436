@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
   standalone: true,
 })
 export class AppComponent {
-  // Make auth public for template usage
+  // Make auth public for template usage, use Angular DI
   // Only provide public property, do NOT use in TS code
-  auth = new AuthService(undefined as any, undefined as any);
+  auth = inject(AuthService);
 }
