@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from "@angular/router";
-import { DocumentService } from '../../services/document.service';
 
 @Component({
   selector: 'app-document-list',

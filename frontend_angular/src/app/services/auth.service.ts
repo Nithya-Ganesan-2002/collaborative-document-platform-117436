@@ -6,22 +6,6 @@ export interface UserProfile {
   email: string;
 }
 
-/**
- * Returns true if running in the browser, false on SSR.
- */
-function isBrowser(): boolean {
-  return typeof globalThis !== 'undefined' && typeof globalThis.localStorage !== 'undefined';
-}
-function getLocalStorage(): Storage | null {
-  return isBrowser() ? globalThis.localStorage : null;
-}
-function doAtob(input: string): string | null {
-  if (isBrowser() && typeof globalThis.atob === 'function') {
-    return globalThis.atob(input);
-  }
-  return null;
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -33,20 +17,20 @@ export class AuthService {
   private tokenKey = 'auth_token';
   private apiUrl = '/api';
 
-  constructor() {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // PUBLIC_INTERFACE
   login(email: string, password: string) {
     this.loading.set(true);
     this.error.set(null);
     this.http.post<{token: string}>(`${this.apiUrl}/auth/login`, { email, password }).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.setToken(res.token);
         this.fetchProfile();
         this.loading.set(false);
         this.router.navigate(['/profile']);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error.set(err.error?.message || 'Login failed.');
         this.loading.set(false);
       }
@@ -61,7 +45,7 @@ export class AuthService {
       next: () => {
         this.login(email, password);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error.set(err.error?.message || 'Registration failed.');
         this.loading.set(false);
       }
@@ -100,7 +84,7 @@ export class AuthService {
     }
     try {
       const payloadB64 = token.split('.')[1];
-      const decoded = doAtob(payloadB64 || '');
+      const decoded = this.doAtob(payloadB64 || '');
       if (!decoded) { this.user.set(null); return; }
       const payload = JSON.parse(decoded);
       this.user.set({ email: payload.email });
@@ -110,15 +94,28 @@ export class AuthService {
   }
 
   private setToken(token: string) {
-    const ls = getLocalStorage();
+    const ls = this.getLocalStorage();
     if (ls) ls.setItem(this.tokenKey, token);
   }
   private getToken(): string|null {
-    const ls = getLocalStorage();
+    const ls = this.getLocalStorage();
     return ls ? ls.getItem(this.tokenKey) : null;
   }
   private clearToken() {
-    const ls = getLocalStorage();
+    const ls = this.getLocalStorage();
     if (ls) ls.removeItem(this.tokenKey);
+  }
+
+  private isBrowser(): boolean {
+    return typeof globalThis !== 'undefined' && typeof globalThis.localStorage !== 'undefined';
+  }
+  private getLocalStorage(): Storage | null {
+    return this.isBrowser() ? globalThis.localStorage : null;
+  }
+  private doAtob(input: string): string | null {
+    if (this.isBrowser() && typeof globalThis.atob === 'function') {
+      return globalThis.atob(input);
+    }
+    return null;
   }
 }

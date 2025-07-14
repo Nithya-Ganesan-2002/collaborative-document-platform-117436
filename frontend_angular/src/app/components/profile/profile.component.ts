@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,5 +9,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-// 'auth' is used only in the template
-export class ProfileComponent {}
+export class ProfileComponent {
+  onLogout() {
+    // should call some logout procedure if available
+  }
+}

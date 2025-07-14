@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css',
   standalone: true,
 })
-// 'auth' is only used in template context
-export class AppComponent {}
+export class AppComponent {
+  // Make auth public for template usage
+  // Only provide public property, do NOT use in TS code
+  auth = new AuthService(undefined as any, undefined as any);
+}

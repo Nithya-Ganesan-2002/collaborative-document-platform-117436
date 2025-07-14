@@ -6,6 +6,14 @@
       <button *ngIf="editable" (click)="remove.emit(user)">Remove</button>
     </li>
   </ul>
+  <div *ngIf="onlineCollaborators.length">
+    <h4>Online now:</h4>
+    <ul>
+      <li *ngFor="let user of onlineCollaborators">
+        <span style="color: #0c0; margin-right:0.5em;">●</span>{{ user }}
+      </li>
+    </ul>
+  </div>
   <div *ngIf="editable" class="invite-row">
     <input type="text" [(ngModel)]="pendingInvite" placeholder="User email or ID" />
     <button (click)="onInvite()">Invite</button>

@@ -1,11 +1,11 @@
 <div class="editor-outer">
   <div *ngIf="editable" class="title-input">
-    <input [(ngModel)]="editTitle" placeholder="Document title" />
+    <input [(ngModel)]="editTitle" (ngModelChange)="onTitleChange()" placeholder="Document title" />
   </div>
   <div *ngIf="!editable">
     <h2>{{document.title}}</h2>
   </div>
-  <textarea *ngIf="editable" [(ngModel)]="editContent" rows="15"></textarea>
+  <textarea *ngIf="editable" [(ngModel)]="editContent" (ngModelChange)="onContentChange()" rows="15"></textarea>
   <div *ngIf="!editable" class="readonly-content">{{ document.content }}</div>
   <button *ngIf="editable" class="save-btn" (click)="onSave()">Save</button>
 </div>

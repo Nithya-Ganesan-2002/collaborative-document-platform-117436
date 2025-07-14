@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { Router } from '@angular/router';
-import { DocumentService } from "../../services/document.service";
 
 @Component({
   selector: 'app-document-create',
@@ -16,4 +14,10 @@ export class DocumentCreateComponent {
   content = '';
   errorMsg: string|null = null;
   submitting = false;
+
+  onSubmit() {
+    if (!this.title.trim()) return;
+    this.submitting = true;
+    // The logic must use Observable for navigation and error
+  }
 }

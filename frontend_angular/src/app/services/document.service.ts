@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+export { CollabService } from './collab.service';
 
 export interface DocumentBrief {
   id: string;
@@ -23,6 +24,8 @@ export class DocumentService {
   public error = signal<string|null>(null);
 
   private apiUrl = '/api';
+  constructor(private http: HttpClient) {}
+
   private getToken(): string|null {
     return typeof globalThis !== 'undefined' && globalThis.localStorage
       ? globalThis.localStorage.getItem('auth_token')
@@ -41,11 +44,11 @@ export class DocumentService {
     this.http.get<DocumentBrief[]>(`${this.apiUrl}/documents`, {
       headers: this.getAuthHeaders()
     }).subscribe({
-      next: docs => {
+      next: (docs: DocumentBrief[]) => {
         this.documents.set(docs);
         this.loading.set(false);
       },
-      error: err => {
+      error: (err: any) => {
         this.error.set(err.error?.message || 'Could not fetch documents.');
         this.loading.set(false);
       }
@@ -100,6 +103,4 @@ export class DocumentService {
       headers: this.getAuthHeaders()
     });
   }
-
-  constructor() {}
 }
