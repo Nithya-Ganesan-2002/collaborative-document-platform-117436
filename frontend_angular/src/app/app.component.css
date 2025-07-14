@@ -1,0 +1,20 @@
+.top-nav {
+  display: flex;
+  gap: 1em;
+  background: #0057d9;
+  padding: 1em;
+  color: #fff;
+  font-size: 1.1em;
+  justify-content: flex-end;
+}
+.top-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.3em 1em;
+  font-weight: 500;
+}
+.top-nav a:hover {
+  background: #ffce00;
+  color: #222;
+  border-radius: 3px;
+}
